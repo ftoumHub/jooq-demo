@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  jooq_demo_pg:
+    image: postgres:9.6-alpine
+    command: ["postgres", "-c", "log_min_duration_statement=1000", "-c", "log_destination=stderr"]
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: password
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./dump_data:/home/pg
