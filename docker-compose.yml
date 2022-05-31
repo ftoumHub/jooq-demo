@@ -7,7 +7,8 @@ services:
     ports:
       - 5432:5432
     environment:
-      POSTGRES_PASSWORD: password
+      POSTGRES_USER: sakilapg
+      POSTGRES_PASSWORD: sakilapg #superuser password
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
       - ./dump_data:/home/pg

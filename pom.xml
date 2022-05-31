@@ -5,13 +5,15 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example</groupId>
-    <artifactId>jooq-demo</artifactId>
+    <artifactId>jooq-sakila-pg-demo</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <properties>
         <hickari.version>2.7.4</hickari.version>
         <jooq.version>3.15.3</jooq.version>
+        <junit.jupiter.version>5.3.2</junit.jupiter.version>
+        <liquibase.version>3.8.4</liquibase.version>
         <postgresql.version>42.1.4</postgresql.version>
         <lombok.version>1.18.20</lombok.version>
         <slf4j.version>1.7.25</slf4j.version>
@@ -42,6 +44,11 @@
             <version>${jooq.version}</version>
         </dependency>
         <dependency>
+            <groupId>org.liquibase</groupId>
+            <artifactId>liquibase-core</artifactId>
+            <version>${liquibase.version}</version>
+        </dependency>
+        <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <version>${postgresql.version}</version>
@@ -66,6 +73,31 @@
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
             <version>${slf4j.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>${junit.jupiter.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-params</artifactId>
+            <version>${junit.jupiter.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>${junit.jupiter.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>3.6.2</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
@@ -95,16 +127,16 @@
                 <configuration>
                     <jdbc>
                         <driver>org.postgresql.Driver</driver>
-                        <url>jdbc:postgresql://localhost:5432/jooqdemo</url>
-                        <user>jooqdemo</user>
-                        <password>jooqdemo</password>
+                        <url>jdbc:postgresql://localhost:5432/sakilapg</url>
+                        <user>sakilapg</user>
+                        <password>sakilapg</password>
                     </jdbc>
                     <generator>
                         <database>
                             <name>org.jooq.meta.postgres.PostgresDatabase</name>
                             <includes>.*</includes>
                             <excludes></excludes>
-                            <inputSchema>records</inputSchema>
+                            <inputSchema>public</inputSchema>
                         </database>
                         <target>
                             <packageName>org.jooq.sources</packageName>
